@@ -31,7 +31,7 @@ class _CartScreenState extends State<CartScreen> {
         title: Text("Cart"),
       ),
       body: ListView.builder(
-        itemCount: providerW!.title.length,
+        itemCount: providerW!.titleList.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -41,14 +41,21 @@ class _CartScreenState extends State<CartScreen> {
                 padding: EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    Image(image: NetworkImage("${providerR!.image[index]}"),width: 50,height: 50,),
+                    Image(image: NetworkImage("${providerR!.imageList[index]}"),width: 50,height: 50,),
                     Column(
                       children: [
-                        Text("${providerR!.title[index]}"),
-                        Text("${providerR!.category[index]}"),
+                        SizedBox(
+                            width: MediaQuery
+                                .sizeOf(context)
+                                .width - 300,
+                            child: Text("${providerR!.titleList[index]}",
+                              style: TextStyle(fontSize: 18),
+                              overflow: TextOverflow.ellipsis,)),
+                        // Text("${providerR!.categoryList[index]}"),
                       ],
                     ),
-                    Text("${providerR!.price[index]}"),
+                    Spacer(),
+                    Text("${providerR!.priceList[index]}",style: TextStyle(fontSize: 18),),
                   ],
                 ),
               ),

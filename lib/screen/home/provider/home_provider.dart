@@ -7,13 +7,13 @@ class HomeProvider with ChangeNotifier
 {
   Future<List<ProductModel>?>? product;
   List<ProductModel> cartList = [];
-  List title = [];
-  List price = [];
-  List category = [];
-  List<String> image = [];
+  List<String> titleList = [];
+  List<String> priceList = [];
+  List<String> categoryList = [];
+  List<String> imageList = [];
   String? select = "All";
   SharedHelper helper = SharedHelper();
-  List<String> categoryList = [
+  List<String> categoryListHome = [
     "All","men's clothing","jewelery","electronics","women's  clothing"
   ];
 
@@ -39,19 +39,15 @@ class HomeProvider with ChangeNotifier
 
   Future<void> saveData(String? title,String? price,String? category,String? image)
   async {
-    List<String> data1 = [];
-    List<String> data2 =[];
-    List<String> data3 = [];
-    List<String> data4 = [];
-    data1.add(title!);
-    data2.add(price!);
-    data3.add(category!);
-    data4.add(image!);
+    titleList.add(title!);
+     priceList.add(price!);
+     categoryList.add(category!);
+     imageList.add(image!);
     // print(title);
-    helper.setTitle(data1);
-    helper.setPrice(data2);
-    helper.setCategory(data3);
-    helper.setImage(data4);
+    helper.setTitle(titleList);
+    helper.setPrice(priceList);
+    helper.setCategory(categoryList);
+    helper.setImage(imageList);
     notifyListeners();
   }
 
@@ -63,11 +59,10 @@ class HomeProvider with ChangeNotifier
      List<String> data4 = await helper.getImage();
 
     if(data1 != null && data2 != null && data3 != null && data4 != null) {
-      title.add(data1);
-      price.add(data2);
-      category.add(data3);
-      image.add(data4 as String);
-      // title.add(data1 as String);
+      titleList = data1;
+      priceList = data2;
+      categoryList = data3;
+      imageList = data4;
     }
     notifyListeners();
     // cartList.add();
@@ -81,10 +76,11 @@ class HomeProvider with ChangeNotifier
 
   void deleteData(int index)
   {
-    title.removeAt(index);
-    price.removeAt(index);
-    category.removeAt(index);
-    image.removeAt(index);
+    titleList.removeAt(index);
+    priceList.removeAt(index);
+    categoryList.removeAt(index);
+    imageList.removeAt(index);
     getData();
+    notifyListeners();
   }
 }

@@ -11,7 +11,7 @@ class SharedHelper
   Future<List<String>> getTitle()
   async {
     SharedPreferences shr =await SharedPreferences.getInstance();
-   List<String> title =  shr.getStringList("title")??[];
+   List<String>? title =  shr.getStringList("title")??[];
     return title;
   }
 

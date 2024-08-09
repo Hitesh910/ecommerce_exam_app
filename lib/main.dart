@@ -11,6 +11,7 @@ void main() {
       ChangeNotifierProvider.value(value: HomeProvider())
     ],
     child:  MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: app_routes,
     )),);
 }
